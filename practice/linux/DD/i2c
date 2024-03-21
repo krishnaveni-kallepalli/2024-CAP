@@ -1,0 +1,65 @@
+i2c :
+	Ex : rasp pi connected to salve OLED pannel 
+	
+1. board info : devname, slave addr 
+
+
+2. init 
+get_adapter(no.of busses);//bus is available
+Ex:rasppi inbuilt 1 bus, 1 i2c bus ;
+
+new_device(adapter,board info);
+
+
+
+i2c Write : buff, data len
+i2c read : buff(dest),data len
+
+
+Slave specific:
+send commands to slave (sl_write):iscmd(T,F),data(1,0);  
+
+ Ex: Slave - OLED 
+ 
+1. display_init()
+ {
+ 	sl_write(true,ADDR); 
+ 	sl_write(true,ADDR);
+ 	sl_write(true,ADDR);.... disp on/off,set offset,set contrast,scroll,cursor
+ }
+ 
+ 
+ 
+ 
+2.	Fill_display()	8 pages x 128 segments x 8 bits of data
+	for(i = 0; i < total; i++)
+    {
+        sl_Write(false, data);
+    }
+    
+3. oled_probe: i2c_client , i2c_devid 
+
+	disp_init();
+	fill(addr);
+	// slave found  
+    
+    
+4. oled_remove: i2c_client  
+    fill(addr);
+    
+    
+    i2c_client // Handle to the slave device
+    
+driver_init:
+	get_adapter
+	new_device
+	add_device
+	put adapter 
+	
+	
+driver_exit:
+	unreg_dev
+	del_driver
+
+    
+    

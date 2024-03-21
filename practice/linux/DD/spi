@@ -1,0 +1,22 @@
+SPI:
+Get the SPI Controller driver	
+	spi_busnum_to_master(bus num)
+ 
+ 
+Add slave to SPI controller 
+	create a spi_board_info structure that has the slave device’s details.
+	new device
+	alloc device
+	add device
+	
+ 
+Configure the SPI
+	spi_setup
+	
+	
+Message Transfer
+	spi_sync_transfer
+	spi_async
+
+Remove the device	
+	spi_unreg
